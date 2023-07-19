@@ -1,5 +1,6 @@
 export default {
     HOME: "Home",
     SHOP : "Tienda",
-    CATEGORY: "Categorias"
+    CATEGORY: "Categorias",
+    NEWS : "Noticias",
 }
