@@ -1,4 +1,7 @@
+import PropTypes from 'prop-types'; 
+
 import * as S from "./Button.styles";
+
 
 const Button = (props) => {
 
@@ -16,4 +19,12 @@ const Button = (props) => {
   );
 };
 
+Button.propTypes ={
+  background : PropTypes.string,
+  fontSize: PropTypes.string,
+  children: PropTypes.string,
+  onClick:PropTypes.func
+}
+
 export default Button;
+ 
