@@ -1,42 +1,63 @@
-import { useState } from "react";
+import React from "react";
+import * as S from "./Carousel.styles";
 
-import Button from "../button/Button"
-import Doom from "../../Img/DOOM.jpg"
-import Fifa from "../../Img/FIFA.jpg"
-
-
-
-const Carousel = () => {
-  const images = ["../../Img/DOOM.jpg", "../../Img/FIFA.jpg"];
-  const [selectedIndex, setSelecetedIndex] = useState(0);
-  const [selectedImage, setSelectedImage] = useState(images[0]);
-
-  const selectNewImage = (index, images, next ) =>{
-    const condition = next ? selectedIndex <images.length -1 : selectedIndex > 0;
-    const nextIndex = next ? (condition ? selectedIndex +1 : 0) : condition ? selectedIndex-1 : images.length -1;
-    setSelectedImage(images[nextIndex]);
-    setSelecetedIndex(selectedIndex);
-  }
-
-  const previos = () => {
-    selectNewImage(selectedIndex, images, false)
-  };
-
-  const next = () => {
-    selectNewImage(selectedIndex, images)
-  };
-
-  return(
-    <>
-      
-      <Button onClick={previos}>{"<"}</Button>
-      <img src={Doom} alt="Games"/>
-      <img src={Fifa} alt="Games"/>
-      <img src={Doom} alt="Games"/>
-      <Button onClick={next}>{">"}</Button>
-    </>
-  ) 
+const Carousel = ({
+  name,
+  indexPage,
+  index,
+  img,
+  discountPercent,
+  price,
+  priceDiscount,
+  currency,
+  discounted,
+}) => {
+  const formatPesoArgentino = (number) => {
+   
+    const numericValue = typeof number === 'string' ? parseFloat(number) : number;
   
+    
+    const cents = numericValue / 100;
+  
+    
+    const formattedCents = cents.toLocaleString('es-AR', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  
+    return `${currency} $ ${formattedCents}`;
+  };
+  
+  
+
+  return (
+    <S.Container>
+      {index === indexPage && (
+        <S.CarouselContainer>
+          <img src={img} alt="game"></img>
+          <S.InfoContainer>
+            <S.Name>{name}</S.Name>
+            <S.PriceContainer>
+              {discounted === true && (
+                <>
+                  <S.Discount> -{discountPercent}%</S.Discount>
+                  <S.PriceDiscount>
+                      {formatPesoArgentino(price)}
+                  </S.PriceDiscount>
+                  <S.DiscountPrice>{formatPesoArgentino(priceDiscount)}</S.DiscountPrice>
+                </>
+              )}
+              {discounted === false && (
+                <>
+                  <S.Price>  {formatPesoArgentino(price)}</S.Price>
+                </>
+              )}
+            </S.PriceContainer>
+          </S.InfoContainer>
+        </S.CarouselContainer>
+      )}
+    </S.Container>
+  );
 };
 
 export default Carousel;

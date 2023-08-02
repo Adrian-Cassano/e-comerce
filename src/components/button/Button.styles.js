@@ -3,13 +3,17 @@ import { Button } from "@mui/material";
 
 
 export const StyledButton = styled(Button)(
-  ({ background, fontSize, $variant }) => ({
+  ({  fontSize, $variant }) => ({
     "&.MuiButton-root": {
-      backgroundColor: background || "yellow",
-      fontSize: fontSize,
-      width: "6rem",
+      color:"white",
+      fontSize: "20px",
       height: "3rem",
-      margin: "1rem",
+      marginLeft: "3rem",
+      marginRight: "3rem",
+      marginTop:"1rem",
+      marginBottom:"1rem",
+      borderLeft: "black 1px solid",
+      borderRight: "black 1px solid",
     },
     
   })
