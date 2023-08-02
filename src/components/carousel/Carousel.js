@@ -3,7 +3,6 @@ import * as S from "./Carousel.styles";
 
 const Carousel = ({
   name,
-  indexPage,
   index,
   img,
   discountPercent,
@@ -14,28 +13,26 @@ const Carousel = ({
   currentIndex,
 }) => {
   const formatPesoArgentino = (number) => {
-   
-    const numericValue = typeof number === 'string' ? parseFloat(number) : number;
-  
-    
+    const numericValue =
+      typeof number === "string" ? parseFloat(number) : number;
+
     const cents = numericValue / 100;
-  
-    
-    const formattedCents = cents.toLocaleString('es-AR', {
+
+    const formattedCents = cents.toLocaleString("es-AR", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
-  
+
     return `${currency} $ ${formattedCents}`;
   };
-  
-  
 
   return (
     <S.Container>
       {index === currentIndex && (
         <S.CarouselContainer>
-          <img src={img} alt="game"></img>
+          <S.ImgContainer>
+            <img src={img} alt="game"></img>
+          </S.ImgContainer>
           <S.InfoContainer>
             <S.Name>{name}</S.Name>
             <S.PriceContainer>
@@ -43,14 +40,16 @@ const Carousel = ({
                 <>
                   <S.Discount> -{discountPercent}%</S.Discount>
                   <S.PriceDiscount>
-                      {formatPesoArgentino(price)}
+                    {formatPesoArgentino(price)}
                   </S.PriceDiscount>
-                  <S.DiscountPrice>{formatPesoArgentino(priceDiscount)}</S.DiscountPrice>
+                  <S.DiscountPrice>
+                    {formatPesoArgentino(priceDiscount)}
+                  </S.DiscountPrice>
                 </>
               )}
               {discounted === false && (
                 <>
-                  <S.Price>  {formatPesoArgentino(price)}</S.Price>
+                  <S.Price> {formatPesoArgentino(price)}</S.Price>
                 </>
               )}
             </S.PriceContainer>

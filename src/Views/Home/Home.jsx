@@ -13,19 +13,14 @@ import SerchBar from "../../components/searchBar";
 
 import * as S from "./Home.styles";
 
-var indexPage = 0;
-
 const Home = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
-  const [numPage, setNumPage] = useState(indexPage);
-
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const gamesStore = useSelector((state) => state.gamesSlice.games);
-  
 
   const apiUrl = "http://localhost:3001/Home";
 
@@ -36,8 +31,8 @@ const Home = () => {
   }, []);
 
   const buttonNext = (e) => {
+e.preventDefault()
     setCurrentIndex((prevIndex) => (prevIndex + 1) % gamesStore.length);
-    
   };
   const buttonPrev = () => {
     setCurrentIndex(
@@ -83,14 +78,13 @@ const Home = () => {
           </button>
         </S.RegisterButtons>
       </S.NavBarContainer>
-
       <S.SerchBarContainer>
         <SerchBar />
       </S.SerchBarContainer>
       <S.CarouselContainer>
         <Button onClick={buttonPrev}>{"<"}</Button>
-
         <S.Carousel>
+          <S.Title>Destacados Y Recomendados</S.Title>
           {gamesStore.map((game, index) => {
             return (
               <Carousel
@@ -98,7 +92,6 @@ const Home = () => {
                 currentIndex={currentIndex}
                 name={game.name}
                 img={game.large_capsule_image}
-                indexPage={indexPage}
                 index={index}
                 discountPercent={game.discount_percent}
                 discounted={game.discounted}
@@ -109,9 +102,8 @@ const Home = () => {
             );
           })}
         </S.Carousel>
-       
-          <Button onClick={buttonNext}>{">"}</Button>
-      
+
+        <Button onClick={buttonNext}>{">"}</Button>
       </S.CarouselContainer>
       <GamesCards />
     </S.Container>

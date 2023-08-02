@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 100vw;
   background: linear-gradient(to top, #0e0054 30%, transparent);
+  color: white;
+  
 `;
 export const NavBarContainer = styled.div`
   width: 100vw;
@@ -25,13 +27,15 @@ export const SerchBarContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
+export const Title = styled.div`
+font-size: 25px;
+`
 export const CarouselContainer = styled.div`
   display: flex;
-  margin-top: 20rem;
+  margin-top: 10rem;
   justify-content: center;
   align-items: center;
 `;
 export const Carousel = styled.div`
-    background-color:  red;
+    
 `;
