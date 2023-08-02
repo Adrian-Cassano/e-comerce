@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Home from "./Views/Home"
 import News from "./Views/News"
-import Landing from "./Views/Landing"
+import Register from "./Views/Register"
+import LogIn from "./Views/LogIn"
 
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
     <Router>
       <Routes>
         <Route path={"/"} exact element={<Home />} />
-        <Route path={"/Landing"} exact element={<Landing />} />
+        <Route path={"/Register"} exact element={<Register />} />
+        <Route path={"/LogIn"} exact element={<LogIn />} />
         <Route path={"/News"} exact element={<News />} />
         
       </Routes>

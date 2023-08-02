@@ -1,9 +1,9 @@
 import * as S from "./Input.styles";
 
 const Input = (props) => {
-  const { children, background, fontSize } = props;
+  const { children, background, fontSize, type, color} = props;
   return (
-    <S.StyledInput background={background} fontSize={fontSize}>
+    <S.StyledInput color={color} type={type} background={background} fontSize={fontSize}>
       {children}
     </S.StyledInput>
   );
