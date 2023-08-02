@@ -11,6 +11,7 @@ const Carousel = ({
   priceDiscount,
   currency,
   discounted,
+  currentIndex,
 }) => {
   const formatPesoArgentino = (number) => {
    
@@ -32,7 +33,7 @@ const Carousel = ({
 
   return (
     <S.Container>
-      {index === indexPage && (
+      {index === currentIndex && (
         <S.CarouselContainer>
           <img src={img} alt="game"></img>
           <S.InfoContainer>

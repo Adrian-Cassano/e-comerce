@@ -20,14 +20,14 @@ const Home = () => {
 
   const navigate = useNavigate();
 
-  const gamesStore = useSelector((state) => state.gamesSlice.games);
+  const [numPage, setNumPage] = useState(indexPage);
 
-  const images = gamesStore[0]?.large_capsule_image;
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const gamesStore = useSelector((state) => state.gamesSlice.games);
+  
 
   const apiUrl = "http://localhost:3001/Home";
-
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [selectedImage, setSelectedImage] = useState(images);
 
   useEffect(() => {
     axios.get(apiUrl).then((response) => {
@@ -35,9 +35,15 @@ const Home = () => {
     });
   }, []);
 
-  const buttonPrev = () => {};
-
-  const buttonNext = () => {};
+  const buttonNext = (e) => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % gamesStore.length);
+    
+  };
+  const buttonPrev = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + gamesStore.length) % gamesStore.length
+    );
+  };
 
   return (
     <S.Container>
@@ -82,13 +88,14 @@ const Home = () => {
         <SerchBar />
       </S.SerchBarContainer>
       <S.CarouselContainer>
-        {indexPage !== 0 && <Button onClick={buttonPrev}>{"<"}</Button>}
+        <Button onClick={buttonPrev}>{"<"}</Button>
 
         <S.Carousel>
           {gamesStore.map((game, index) => {
             return (
               <Carousel
                 key={game.id}
+                currentIndex={currentIndex}
                 name={game.name}
                 img={game.large_capsule_image}
                 indexPage={indexPage}
@@ -102,8 +109,9 @@ const Home = () => {
             );
           })}
         </S.Carousel>
-
-        <Button onClick={buttonNext}>{">"}</Button>
+       
+          <Button onClick={buttonNext}>{">"}</Button>
+      
       </S.CarouselContainer>
       <GamesCards />
     </S.Container>
