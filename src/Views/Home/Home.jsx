@@ -5,11 +5,15 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 
 import { getGames } from "../../Redux/Slice/sliceGames";
-import routes from "../../constants/routes";
+
 import Button from "../../components/button";
 import Carousel from "../../components/carousel";
 import GamesCards from "../../components/gamesCards";
-import SerchBar from "../../components/searchBar";
+import List from "../../components/list";
+import SecondCarousel from "../../components/secondCarousel";
+
+import routes from "../../constants/routes";
+import banner from "../../Img/image.png";
 
 import * as S from "./Home.styles";
 
@@ -31,7 +35,7 @@ const Home = () => {
   }, []);
 
   const buttonNext = (e) => {
-e.preventDefault()
+    e.preventDefault();
     setCurrentIndex((prevIndex) => (prevIndex + 1) % gamesStore.length);
   };
   const buttonPrev = () => {
@@ -44,44 +48,30 @@ e.preventDefault()
     <S.Container>
       <S.NavBarContainer>
         <S.NavBarButtons>
-          <Button
-            onClick={() => {
-              navigate(routes.SHOP);
-            }}
-          >
-            Tienda
-          </Button>
+          <Button>Tienda</Button>
           <Button>Categorias</Button>
           <Button>Acerca de</Button>
-          <Button
-            onClick={() => {
-              navigate(routes.NEWS);
-            }}
-          >
-            Noticias
-          </Button>
+          <Button>Noticias</Button>
         </S.NavBarButtons>
         <S.RegisterButtons>
-          <button
+          <S.ButtonLog
             onClick={() => {
               navigate(routes.SingUp);
             }}
           >
             Registrarse
-          </button>
-          <button
+          </S.ButtonLog>
+          <S.ButtonLog
             onClick={() => {
               navigate(routes.LogIn);
             }}
           >
             Iniciar Sesion
-          </button>
+          </S.ButtonLog>
         </S.RegisterButtons>
       </S.NavBarContainer>
-      <S.SerchBarContainer>
-        <SerchBar />
-      </S.SerchBarContainer>
       <S.CarouselContainer>
+        <List />
         <Button onClick={buttonPrev}>{"<"}</Button>
         <S.Carousel>
           <S.Title>Destacados Y Recomendados</S.Title>
@@ -102,10 +92,40 @@ e.preventDefault()
             );
           })}
         </S.Carousel>
-
         <Button onClick={buttonNext}>{">"}</Button>
       </S.CarouselContainer>
-      <GamesCards />
+      <S.BannerContainer>
+        <S.Banner>
+          <img src={banner} alt="Banner"></img>
+        </S.Banner>
+      </S.BannerContainer>
+      <S.SecondCarouselContainer>
+        <S.SecondCarousel>
+          {gamesStore.map((game, index) => {
+            return (
+              <SecondCarousel
+                key={game.id}
+                name={game.name}
+                img={game.small_capsule_image}
+                index={index}
+                discountPercent={game.discount_percent}
+                discounted={game.discounted}
+                price={game.original_price}
+                priceDiscount={game.final_price}
+                currency={game.currency}
+              />
+            );
+          })}
+        </S.SecondCarousel>
+      </S.SecondCarouselContainer>
+      <S.CardsContainer>
+        <S.Title>Juegos</S.Title>
+        <S.Cards>
+          {gamesStore.map((game) => {
+            return <GamesCards key={game.id} img={game.small_capsule_image} />;
+          })}
+        </S.Cards>
+      </S.CardsContainer>
     </S.Container>
   );
 };

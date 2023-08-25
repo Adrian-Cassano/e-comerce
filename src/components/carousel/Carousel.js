@@ -47,9 +47,14 @@ const Carousel = ({
                   </S.DiscountPrice>
                 </>
               )}
-              {discounted === false && (
+              {discounted === false && price !== null && (
                 <>
                   <S.Price> {formatPesoArgentino(price)}</S.Price>
+                </>
+              )}
+              {price === null && (
+                <>
+                  <S.Price> GRATUITO</S.Price>
                 </>
               )}
             </S.PriceContainer>
