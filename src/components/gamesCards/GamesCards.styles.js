@@ -1,11 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 100vw;
   display: flex;
-  justify-content: center;
-  margin-top: 5rem;
-`;
-export const ImgContainers = styled.div`
-  
+  flex-direction: row;
+  border: 5px solid #bdbdbe;
+  margin: 5px;
 `;
