@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 import Input from "../../components/input";
 
 
@@ -11,26 +13,38 @@ const LogIn = () => {
     e.preventDefault();
     const email = e.target[0].value;
     const password = e.target[2].value;
-    if(email === ""){
-      alert("Ingresa un email")
-    }else if(password === ""){
-      alert("Ingresa una contraseña")
-    }
-    else{
-      navigate("/")
-      const informacionUsuario = {
-        email: email,
-        password: password,
-      };
-      const ususarioJson = JSON.stringify(informacionUsuario);
-      fetch(url, {
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: ususarioJson,
-      });
-    }
+    axios.get(url).then((response)=>{
+      response.data.forEach((usuario)=>{
+        if(email === ""){
+          alert("Ingresa un email")
+        }else if(password === ""){
+          alert("Ingresa una contraseña")
+        }else if(email !== usuario.email && password !== usuario.password ){
+          alert("Email o contraseña no son validos")
+        }else if(email === usuario.email && password === usuario.password){
+          navigate("/")
+        }
+        else{
+         
+          // console.log("paso en front")
+          // const informacionUsuario = {
+          //   email: email,
+          //   password: password,
+          // };
+          // const ususarioJson = JSON.stringify(informacionUsuario);
+          // fetch(url, {
+          //   method: "post",
+          //   headers: {
+          //     "Content-Type": "application/json",
+          //   },
+          //   body: ususarioJson,
+          // });
+         
+        }
+      })
+    
+   
+  })
   
   };
   return (

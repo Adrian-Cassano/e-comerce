@@ -12,7 +12,7 @@ export const Container = styled.div`
 `;
 export const RegisterContainer = styled.div`
   width: 40rem;
-  height: 20rem;
+  height: 15rem;
   background-color: rgba(255, 255, 255, 0.3);
   display: flex;
   border: 5px groove rgb(35, 44, 148);
@@ -23,20 +23,17 @@ export const Title = styled.div`
 `;
 
 export const InputContainer = styled.div`
- 
   width: 40rem;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
-  max-height: 14rem;
+  max-height: 10rem;
 `;
 export const ContainerButton = styled.div`
-height: 50px;
-display: flex;
-align-items: center;
-justify-content: center;
-`
-export const Button = styled.div`
-
-`
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+export const Button = styled.div``;
