@@ -3,34 +3,25 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: #0b0044;
   display: flex;
-  width: 60rem;
-  box-shadow: 5px 5px 5px black;
   color: white;
 `;
-export const CarouselContainer = styled.div`
-  display: flex;
-`;
+export const CarouselContainer = styled.div``;
 export const ImgContainer = styled.div`
-  box-shadow: 15px 5px 20px black;
-  height: 350px;
-  width: 620px;
+  width: 350px;
+  display: flex;
 `;
 export const InfoContainer = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  margin-left: 10px;
+  background-color:   #001789  ;
 `;
 export const Name = styled.div`
-font-size:30px
+  font-size: 15px;
 `;
 export const PriceContainer = styled.div`
-  background-color: gray;
   display: flex;
-  margin-bottom: 10px;
 `;
 export const Discount = styled.div`
-  background-color: green;
   color: #68ff00;
 `;
 
